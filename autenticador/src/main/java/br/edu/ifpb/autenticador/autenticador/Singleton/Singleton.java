@@ -15,19 +15,20 @@ public final class Singleton {
 
 
     private Singleton(String JSON_FILE) throws URISyntaxException, IOException {
-        try{
-            Thread.sleep(1000);
-        }catch (InterruptedException ex){
-            ex.printStackTrace();
-        }
         this.listUsers = listUsersFromJson(JSON_FILE);
     }
 
     public static Singleton getInstance(String JSON_FILE) throws URISyntaxException, IOException {
-        if (instance == null){
-           instance = new Singleton(JSON_FILE);
+        Singleton result = instance;
+        if (result != null){
+            return result;
         }
-        return instance;
+        synchronized (Singleton.class){
+            if (instance == null){
+                instance = new Singleton(JSON_FILE);
+            }
+            return instance;
+        }
     }
 
     public static List<User> listUsersFromJson(String JSON_FILE)throws URISyntaxException, IOException{

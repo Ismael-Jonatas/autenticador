@@ -21,13 +21,7 @@ public class UsersReader {
 
     public static List<User> loadUsersFromJson() throws URISyntaxException, IOException {
         Singleton singleton = Singleton.getInstance(JSON_FILE);
-        User[] users = singleton.getListUsers().toArray(new User[0]);
-        return asList(users);
+        List<User> users = singleton.getListUsers();
+        return users;
     }
 }
-
-   /* public static List<User> loadUsersFromJson() throws URISyntaxException, IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        User[] users = objectMapper.readValue(new File(ClassLoader.getSystemResource(JSON_FILE).toURI()), User[].class);
-        return asList(users);
-    }*/
