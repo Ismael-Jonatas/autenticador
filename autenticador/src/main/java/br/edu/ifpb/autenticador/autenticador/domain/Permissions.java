@@ -21,4 +21,20 @@ public class Permissions {
     private Boolean updatePermission;
     private Boolean insertPermission;
     private Boolean deletePermission;
+
+    public Permissions(){
+    }
+
+    public Permissions(Permissions permissions){
+        if (permissions != null){
+            this.adminPermission = permissions.adminPermission;
+            this.listPermission = permissions.listPermission;
+            this.updatePermission = permissions.updatePermission;
+            this.insertPermission = permissions.insertPermission;
+            this.deletePermission = permissions.deletePermission;
+        }
+
+    }
+
+
 }
